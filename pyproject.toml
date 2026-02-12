@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vindicta-oracle"
+version = "0.1.0"
+description = "AI debate engine for competitive Warhammer predictions"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "ollama>=0.3",
+    "pydantic>=2.0",
+    "duckdb>=0.10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.4", "pre-commit>=3.7"]
+api = ["fastapi>=0.109.0", "uvicorn>=0.27.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vindicta_oracle"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+]

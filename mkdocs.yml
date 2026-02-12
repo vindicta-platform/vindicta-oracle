@@ -1,0 +1,26 @@
+site_name: Meta-Oracle
+site_description: AI debate engine for competitive Warhammer predictions
+site_url: https://vindicta-platform.github.io/Meta-Oracle/
+
+repo_name: vindicta-platform/Meta-Oracle
+repo_url: https://github.com/vindicta-platform/Meta-Oracle
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep-orange
+      accent: amber
+  font:
+    text: Outfit
+    code: JetBrains Mono
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - The 5-Agent Swarm: agents.md
+  - API: api.md
+  - Contributing: contributing.md
+
+plugins:
+  - search
