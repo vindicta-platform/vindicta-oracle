@@ -143,7 +143,7 @@ class TestAnalyzeMethod:
         """analyze() should call the Ollama client."""
         agent = HomeAgent(mock_client)
         result = agent.analyze(sample_context)
-        
+
         mock_client.generate.assert_called_once()
         call_args = mock_client.generate.call_args
         assert agent.system_prompt in call_args[0]
@@ -153,7 +153,7 @@ class TestAnalyzeMethod:
         """analyze() prompt should include all context fields."""
         agent = ArbiterAgent(mock_client)
         agent.analyze(sample_context)
-        
+
         prompt = mock_client.generate.call_args[0][1]
         assert sample_context.player1_faction in prompt
         assert sample_context.player2_faction in prompt
@@ -182,7 +182,7 @@ class TestRespondMethod:
         """respond() should return an Argument object."""
         agent = AdversaryAgent(mock_client)
         result = agent.respond(sample_transcript, round_num=2)
-        
+
         assert isinstance(result, Argument)
         assert result.agent_role == AgentRole.ADVERSARY
         assert result.round == 2
@@ -191,7 +191,7 @@ class TestRespondMethod:
         """respond() should format debate history in prompt."""
         agent = ArbiterAgent(mock_client)
         agent.respond(sample_transcript, round_num=2)
-        
+
         prompt = mock_client.generate.call_args[0][1]
         assert "HOME" in prompt  # Previous argument from HomeAgent
         assert "superior firepower" in prompt
@@ -200,9 +200,9 @@ class TestRespondMethod:
         """respond() should work for opening round with no history."""
         transcript = DebateTranscript(context=sample_context)
         agent = HomeAgent(mock_client)
-        
+
         result = agent.respond(transcript, round_num=1)
-        
+
         assert result.round == 1
         prompt = mock_client.generate.call_args[0][1]
         assert "opening the debate" in prompt.lower() or "no arguments" in prompt.lower()
@@ -219,7 +219,7 @@ class TestVoteMethod:
         """vote() should return a Vote object."""
         agent = HomeAgent(mock_client)
         result = agent.vote(sample_transcript)
-        
+
         assert isinstance(result, Vote)
         assert result.agent_role == AgentRole.HOME
 
@@ -232,7 +232,7 @@ REASONING: Space Marines have the advantage.
 """
         agent = HomeAgent(mock_client)
         result = agent.vote(sample_transcript)
-        
+
         assert "Player 1" in result.prediction
         assert result.win_probability == 0.65
 
@@ -245,7 +245,7 @@ REASONING: Orks will overwhelm.
 """
         agent = AdversaryAgent(mock_client)
         result = agent.vote(sample_transcript)
-        
+
         assert "Player 2" in result.prediction
         assert result.win_probability == 0.70
 
@@ -258,7 +258,7 @@ REASONING: Evenly matched.
 """
         agent = ArbiterAgent(mock_client)
         result = agent.vote(sample_transcript)
-        
+
         assert "Draw" in result.prediction
         assert result.win_probability == 0.50
 
@@ -267,7 +267,7 @@ REASONING: Evenly matched.
         mock_client.generate.return_value = "I think player 1 might win maybe 60%"
         agent = HomeAgent(mock_client)
         result = agent.vote(sample_transcript)
-        
+
         # Should still return a Vote, defaulting where needed
         assert isinstance(result, Vote)
         assert result.win_probability == 0.60
@@ -277,7 +277,7 @@ REASONING: Evenly matched.
         mock_client.generate.return_value = "WINNER: Player 1\nPROBABILITY: 150%"
         agent = HomeAgent(mock_client)
         result = agent.vote(sample_transcript)
-        
+
         assert result.win_probability <= 1.0
 
 
@@ -299,14 +299,14 @@ class TestEdgeCases:
         """Agents should handle voting on empty transcripts."""
         transcript = DebateTranscript(context=sample_context)
         agent = RuleSageAgent(mock_client)
-        
+
         result = agent.vote(transcript)
         assert isinstance(result, Vote)
 
     def test_long_debate_history(self, mock_client, sample_context):
         """Agents should handle long debate histories."""
         transcript = DebateTranscript(context=sample_context)
-        
+
         # Add 5 rounds of 5 agents each
         for round_num in range(1, 6):
             round_args = []
@@ -318,10 +318,10 @@ class TestEdgeCases:
                     content=f"Argument from {role.value} in round {round_num}"
                 ))
             transcript.rounds.append(round_args)
-        
+
         agent = ChaosAgent(mock_client)
         result = agent.respond(transcript, round_num=6)
-        
+
         assert isinstance(result, Argument)
 
 

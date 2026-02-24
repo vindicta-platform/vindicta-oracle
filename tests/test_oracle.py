@@ -7,6 +7,7 @@ from meta_oracle.protocol import AgentRole, Argument, ArgumentType, DebateRound
 from meta_oracle.transcript import DebateTranscript, Prediction, AgentVote
 from meta_oracle.engine import DebateEngine
 from meta_oracle.agents import StubAgent
+from meta_oracle.models import DebateContext
 
 
 class TestProtocol:
@@ -29,21 +30,21 @@ class TestProtocol:
             argument_type=ArgumentType.CLAIM,
             content="Player 1 will win"
         )
-        
+
         assert arg.agent_role == AgentRole.HOME
         assert arg.content == "Player 1 will win"
 
     def test_debate_round(self):
         """DebateRound should hold arguments."""
         round = DebateRound(round_number=1, topic="Test")
-        
+
         arg = Argument(
             agent_role=AgentRole.HOME,
             argument_type=ArgumentType.CLAIM,
             content="Test"
         )
         round.add_argument(arg)
-        
+
         assert len(round.arguments) == 1
 
 
@@ -57,7 +58,7 @@ class TestTranscript:
             player1_faction="Space Marines",
             player2_faction="Orks"
         )
-        
+
         assert transcript.player1_faction == "Space Marines"
 
     def test_consensus_calculation(self):
@@ -67,7 +68,7 @@ class TestTranscript:
             player1_faction="A",
             player2_faction="B"
         )
-        
+
         # 3 votes for player 1, 2 for player 2
         for i in range(3):
             transcript.add_vote(AgentVote(
@@ -79,9 +80,9 @@ class TestTranscript:
                 agent_role=AgentRole.ADVERSARY,
                 prediction=Prediction(winner=2, confidence=0.6, reasoning="Test")
             ))
-        
+
         consensus = transcript.calculate_consensus()
-        
+
         assert consensus.winner == 1
 
     def test_json_round_trip(self):
@@ -91,10 +92,10 @@ class TestTranscript:
             player1_faction="A",
             player2_faction="B"
         )
-        
+
         json_str = transcript.to_json()
         restored = DebateTranscript.from_json(json_str)
-        
+
         assert restored.topic == "Test"
 
 
@@ -104,33 +105,39 @@ class TestDebateEngine:
     @pytest.mark.asyncio
     async def test_engine_runs_debate(self):
         """Engine should run complete debate."""
-        engine = DebateEngine(rounds=2)
-        
+        engine = DebateEngine(num_rounds=2)
+
         # Register stub agents
-        for role in AgentRole:
-            engine.register_agent(StubAgent(role))
-        
+        engine.agents = [StubAgent(role) for role in AgentRole]
+
         transcript = await engine.run_debate(
-            topic="Who will win?",
-            player1_faction="Marines",
-            player2_faction="Orks"
+            DebateContext(
+                player1_faction="Marines",
+                player1_list="Sample List",
+                player2_faction="Orks",
+                player2_list="Sample List",
+                mission="Test"
+            )
         )
-        
+
         assert len(transcript.rounds) == 2
         assert transcript.consensus is not None
 
     @pytest.mark.asyncio
     async def test_engine_collects_votes(self):
         """Engine should collect votes from all agents."""
-        engine = DebateEngine(rounds=1)
-        
-        for role in AgentRole:
-            engine.register_agent(StubAgent(role))
-        
+        engine = DebateEngine(num_rounds=1)
+
+        engine.agents = [StubAgent(role) for role in AgentRole]
+
         transcript = await engine.run_debate(
-            topic="Test",
-            player1_faction="A",
-            player2_faction="B"
+            DebateContext(
+                player1_faction="A",
+                player1_list="List A",
+                player2_faction="B",
+                player2_list="List B",
+                mission="Test"
+            )
         )
-        
+
         assert len(transcript.votes) == 5  # All 5 agents voted

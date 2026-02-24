@@ -5,18 +5,18 @@ from uuid import uuid4
 
 from meta_oracle.grader import ListGrader
 from meta_oracle.models import (
-    ArmyList, 
-    Unit, 
-    GradeRequest, 
-    DebateTranscript, 
-    Vote, 
+    ArmyList,
+    Unit,
+    GradeRequest,
+    DebateTranscript,
+    Vote,
     AgentRole,
     DebateContext
 )
 
 
 class MockDebateEngine:
-    def run_grading_session(self, army_list):
+    async def run_grading_session(self, army_list: ArmyList) -> DebateTranscript:
         context = DebateContext(
             player1_faction=army_list.faction,
             player1_list="mock",
@@ -43,9 +43,9 @@ async def test_grade_valid_list():
         units=[Unit(name="Captain", points=100)]
     )
     request = GradeRequest(army_list=army_list)
-    
+
     response = await grader.grade(request)
-    
+
     assert response.score > 0
     assert response.grade in ["A", "B", "C", "D", "F"]
     assert "home" in response.analysis
@@ -55,15 +55,15 @@ async def test_grade_valid_list():
 def test_scoring_formula():
     """Verify the 60/40 scoring formula and grade mapping."""
     grader = ListGrader(engine=MockDebateEngine())
-    
+
     # Mocking internal methods for formula test
     grader._calculate_primordia_score = MagicMock(return_value=100)
-    
+
     # 0.6 * 80 (council) + 0.4 * 100 (primordia) = 48 + 40 = 88
     # 88 should be a "B"
     score = int(0.6 * 80 + 0.4 * 100)
     grade = grader._map_score_to_grade(score)
-    
+
     assert score == 88
     assert grade == "B"
 
