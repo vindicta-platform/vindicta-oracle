@@ -1,7 +1,7 @@
 # Data Model: Oracle RAG Utilization
 
-**Feature**: `002-oracle-rag-utilization`  
-**Created**: 2026-02-23  
+**Feature**: `002-oracle-rag-utilization`
+**Created**: 2026-02-23
 **Base class**: `VindictaModel` (see [R-004](file:///c:/Users/bfoxt/vindicta-playground/vindicta-oracle/specs/002-oracle-rag-utilization/research.md) for rationale)
 
 ---

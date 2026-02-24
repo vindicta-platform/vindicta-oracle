@@ -1,7 +1,7 @@
 # Specification Quality Checklist: Oracle RAG Utilization
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning  
-**Created**: 2026-02-23  
+**Purpose**: Validate specification completeness and quality before proceeding to planning
+**Created**: 2026-02-23
 **Feature**: [spec.md](file:///c:/Users/bfoxt/vindicta-playground/vindicta-oracle/specs/002-oracle-rag-utilization/spec.md)
 
 ## Content Quality

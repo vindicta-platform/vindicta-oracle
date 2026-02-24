@@ -1,10 +1,10 @@
 # Specification: List Grader API
 
-**Feature**: List Grader API  
-**Repository**: vindicta-platform/vindicta-oracle  
-**Issue Reference**: #8  
-**Version**: 1.3  
-**Status**: ✅ Clarified  
+**Feature**: List Grader API
+**Repository**: vindicta-platform/vindicta-oracle
+**Issue Reference**: #8
+**Version**: 1.3
+**Status**: ✅ Clarified
 **Last Updated**: 2026-02-06
 
 ---
@@ -18,18 +18,18 @@ The List Grader API exposes Meta-Oracle's AI council debate capability as a REST
 ## User Stories
 
 ### US-1: Competitive Player List Evaluation
-**As a** competitive player,  
-**I want to** submit my army list for AI evaluation,  
+**As a** competitive player,
+**I want to** submit my army list for AI evaluation,
 **So that** I can understand its strengths and weaknesses before a tournament.
 
 ### US-2: List Comparison Analysis
-**As a** player preparing for a matchup,  
-**I want to** receive a grade and analysis for my list,  
+**As a** player preparing for a matchup,
+**I want to** receive a grade and analysis for my list,
 **So that** I can make informed decisions about unit choices and tactics.
 
 ### US-3: API Integration
-**As a** Vindicta Portal developer,  
-**I want to** call the List Grader API programmatically,  
+**As a** Vindicta Portal developer,
+**I want to** call the List Grader API programmatically,
 **So that** I can integrate grading into the web UI.
 
 ---

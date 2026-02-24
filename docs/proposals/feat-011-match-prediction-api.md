@@ -1,11 +1,11 @@
 # Feature Proposal: Meta-Oracle Match Prediction API
 
-**Proposal ID**: FEAT-011  
-**Author**: Unified Product Architect (Autonomous)  
-**Created**: 2026-02-01  
-**Status**: Draft  
-**Priority**: High  
-**Target Repository**: Meta-Oracle  
+**Proposal ID**: FEAT-011
+**Author**: Unified Product Architect (Autonomous)
+**Created**: 2026-02-01
+**Status**: Draft
+**Priority**: High
+**Target Repository**: Meta-Oracle
 
 ---
 
@@ -124,18 +124,18 @@ class MatchPredictionResponse(BaseModel):
 ### User Stories
 
 #### US-001: Pre-Game Analysis
-**As a** tournament player  
-**I want to** check my matchup before a game  
+**As a** tournament player
+**I want to** check my matchup before a game
 **So that** I can prepare an optimal strategy
 
 #### US-002: Secondary Selection
-**As a** competitive player  
-**I want** AI-recommended secondaries  
+**As a** competitive player
+**I want** AI-recommended secondaries
 **So that** I maximize my scoring potential
 
 #### US-003: Meta Insights
-**As a** list builder  
-**I want to** see current faction win rates  
+**As a** list builder
+**I want to** see current faction win rates
 **So that** I can build competitive lists
 
 ### Acceptance Criteria

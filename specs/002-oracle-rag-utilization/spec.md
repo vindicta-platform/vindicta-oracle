@@ -1,8 +1,8 @@
 # Feature Specification: Oracle RAG Utilization
 
-**Feature Branch**: `002-oracle-rag-utilization`  
-**Created**: 2026-02-23  
-**Status**: Draft  
+**Feature Branch**: `002-oracle-rag-utilization`
+**Created**: 2026-02-23
+**Status**: Draft
 **Input**: User description: "Defines how the Debate Engine and List Grader will utilize the RAG rules server for meta-analysis."
 
 ## Clarifications

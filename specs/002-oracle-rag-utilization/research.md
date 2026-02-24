@@ -1,7 +1,7 @@
 # Research: Oracle RAG Utilization
 
-**Feature**: `002-oracle-rag-utilization`  
-**Created**: 2026-02-23  
+**Feature**: `002-oracle-rag-utilization`
+**Created**: 2026-02-23
 **Purpose**: Resolve technical unknowns and document design decisions before implementation.
 
 ---
