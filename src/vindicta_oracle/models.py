@@ -106,4 +106,4 @@ class GradeResponse(BaseModel):
     council_verdict: dict = Field(..., description="Final consensus and prediction details")
     metadata: dict = Field(..., description="Processing metadata and session IDs")
     unit_data: dict[str, UnitStats] = Field(default_factory=dict, description="Retrieved RAG stats")
-    meta_context: dict[str, str] | None = Field(default=None, description="Global faction meta stats")
+    meta_context: dict | None = Field(default=None, description="Global faction meta stats")
