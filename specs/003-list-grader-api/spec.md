@@ -1,7 +1,7 @@
 # Specification: List Grader API
 
 **Feature**: List Grader API  
-**Repository**: vindicta-platform/Meta-Oracle  
+**Repository**: vindicta-platform/vindicta-oracle  
 **Issue Reference**: #8  
 **Version**: 1.3  
 **Status**: ✅ Clarified  

@@ -86,7 +86,7 @@ for, and adjudicate tactical actions through structured debate rounds.
 ### 4.1 DebateEngine
 
 ```python
-from meta_oracle import DebateEngine, AggressiveAgent, DefensiveAgent
+from vindicta_oracle import DebateEngine, AggressiveAgent, DefensiveAgent
 
 engine = DebateEngine(
     agents=[AggressiveAgent(), DefensiveAgent()],

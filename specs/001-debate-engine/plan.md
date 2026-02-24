@@ -7,7 +7,7 @@
 ## Proposed Changes
 
 ```
-src/meta_oracle/
+src/vindicta_oracle/
 ├── __init__.py
 ├── engine/
 │   ├── __init__.py
@@ -44,5 +44,5 @@ tests/
 
 ```powershell
 uv run pytest tests/ -v
-uv run mypy src/meta_oracle/ --strict
+uv run mypy src/vindicta_oracle/ --strict
 ```
