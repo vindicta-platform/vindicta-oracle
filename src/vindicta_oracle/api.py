@@ -27,16 +27,16 @@ async def grade_list(
     grader: ListGrader = Depends(get_grader)
 ) -> GradeResponse:
     """Submit an army list for AI council grading.
-    
+
     Grading involves a 3-round adversarial debate between 5 specialized agents.
     """
     try:
         # Check units validity (extra safety beyond Pydantic)
         if not request.army_list.units:
             raise HTTPException(status_code=400, detail="List must have at least 1 unit")
-            
+
         return await grader.grade(request)
-        
+
     except ConnectionError:
         raise HTTPException(status_code=503, detail="AI service (Ollama) unavailable")
     except TimeoutError:

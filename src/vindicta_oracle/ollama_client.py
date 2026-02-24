@@ -12,10 +12,10 @@ class OllamaConfig(BaseModel):
 
 class OllamaClient:
     """Wrapper for local Ollama LLM inference."""
-    
+
     def __init__(self, config: OllamaConfig | None = None):
         self.config = config or OllamaConfig()
-    
+
     def generate(self, system_prompt: str, user_prompt: str) -> str:
         """Generate a response using local Ollama model."""
         response = ollama.chat(

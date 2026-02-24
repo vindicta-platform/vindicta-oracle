@@ -13,7 +13,7 @@ from typing import Optional
 class DebateRole(str, Enum):
     """Roles in a structured debate."""
     PROPOSER = "proposer"
-    CHALLENGER = "challenger" 
+    CHALLENGER = "challenger"
     ARBITER = "arbiter"
 
 
@@ -40,17 +40,17 @@ class DebateResult:
 
 class DebateEngine(ABC):
     """Abstract interface for debate orchestration."""
-    
+
     @abstractmethod
     async def start_debate(self, topic: str) -> str:
         """Start a new debate, returns debate_id."""
         pass
-    
+
     @abstractmethod
     async def submit_turn(self, debate_id: str, turn: DebateTurn) -> None:
         """Submit a turn to the debate."""
         pass
-    
+
     @abstractmethod
     async def resolve(self, debate_id: str) -> DebateResult:
         """Resolve the debate and return result."""

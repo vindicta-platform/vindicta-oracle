@@ -31,21 +31,21 @@ class HomeAnalysis:
 class HomeAgent(BaseAgent):
     """
     Home Agent - advocates for the player's army list.
-    
+
     Responsibilities:
     - Analyze list strengths
     - Generate supporting arguments
     - Identify key synergies
     """
-    
+
     def __init__(self, **kwargs):
         super().__init__(name="Home", **kwargs)
-    
+
     async def run(self, army_list: dict) -> HomeAnalysis:
         """Analyze army list and generate advocacy."""
         # TODO: Implement full analysis with Primordia integration
         return HomeAnalysis()
-    
+
     async def generate_argument(self, topic: str) -> str:
         """Generate supporting argument for a topic."""
         # TODO: Implement argument generation

@@ -32,21 +32,21 @@ class Verdict:
 class ArbiterAgent(BaseAgent):
     """
     Arbiter Agent - neutral judge of debates.
-    
+
     Responsibilities:
     - Weigh evidence from Home and Adversary
     - Produce structured verdict
     - Explain reasoning clearly
     """
-    
+
     def __init__(self, **kwargs):
         super().__init__(name="Arbiter", **kwargs)
-    
+
     async def run(self, home_args: list[str], adversary_args: list[str]) -> Verdict:
         """Weigh arguments and produce verdict."""
         # TODO: Implement verdict logic
         return Verdict(verdict_type=VerdictType.NEUTRAL)
-    
+
     async def explain_reasoning(self, verdict: Verdict) -> str:
         """Generate explanation for verdict."""
         # TODO: Implement reasoning explanation

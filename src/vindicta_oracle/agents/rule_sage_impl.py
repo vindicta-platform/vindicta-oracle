@@ -31,21 +31,21 @@ class RuleValidation:
 class RuleSageAgent(BaseAgent):
     """
     Rule-Sage Agent - rules expertise and validation.
-    
+
     Responsibilities:
     - Validate rules claims from other agents
     - Cite official sources
     - Correct rule misinterpretations
     """
-    
+
     def __init__(self, **kwargs):
         super().__init__(name="RuleSage", **kwargs)
-    
+
     async def run(self, claim: str) -> RuleValidation:
         """Validate a rules claim."""
         # TODO: Implement rules validation with RAG
         return RuleValidation(is_valid=True, claim=claim)
-    
+
     async def cite_rule(self, topic: str) -> list[RuleCitation]:
         """Find citations for a rules topic."""
         # TODO: Implement RAG-based citation lookup

@@ -30,21 +30,21 @@ class AdversaryAnalysis:
 class AdversaryAgent(BaseAgent):
     """
     Adversary Agent - argues against player's army list.
-    
+
     Responsibilities:
     - Identify weaknesses in list
     - Generate counter-arguments
     - Play devil's advocate
     """
-    
+
     def __init__(self, **kwargs):
         super().__init__(name="Adversary", **kwargs)
-    
+
     async def run(self, army_list: dict) -> AdversaryAnalysis:
         """Analyze army list weaknesses."""
         # TODO: Implement weakness analysis
         return AdversaryAnalysis()
-    
+
     async def generate_counter(self, argument: str) -> str:
         """Generate counter-argument."""
         # TODO: Implement counter generation

@@ -6,25 +6,25 @@ from meta_oracle.models import Argument, DebateContext, DebateTranscript, Vote
 
 class OracleAgent(Protocol):
     """Interface that all council agents must implement."""
-    
+
     @property
     def role(self) -> str:
         """The agent's role identifier."""
         ...
-    
+
     @property
     def personality(self) -> str:
         """Description of the agent's debate style."""
         ...
-    
+
     def analyze(self, context: DebateContext) -> str:
         """Perform initial analysis of the matchup."""
         ...
-    
+
     def respond(self, transcript: DebateTranscript, round_num: int) -> Argument:
         """Generate a response based on debate history."""
         ...
-    
+
     def vote(self, transcript: DebateTranscript) -> Vote:
         """Cast final prediction vote after debate concludes."""
         ...
@@ -63,7 +63,7 @@ class ArgumentType(str, Enum):
 
 class Argument(BaseModel):
     """A single argument in a debate."""
-    
+
     id: UUID = Field(default_factory=uuid4)
     agent_role: AgentRole
     argument_type: ArgumentType
@@ -75,11 +75,11 @@ class Argument(BaseModel):
 
 class DebateRound(BaseModel):
     """A single round of debate."""
-    
+
     round_number: int
     topic: str
     arguments: list[Argument] = Field(default_factory=list)
-    
+
     def add_argument(self, argument: Argument) -> None:
         """Add an argument to this round."""
         self.arguments.append(argument)
@@ -88,27 +88,27 @@ class DebateRound(BaseModel):
 class OracleAgent(ABC):
     """
     Abstract base class for Oracle Council agents.
-    
+
     Each agent specializes in a different aspect of game analysis.
     """
-    
+
     def __init__(self, role: AgentRole) -> None:
         self.role = role
         self.id = uuid4()
-    
+
     @abstractmethod
     async def analyze(self, context: dict) -> str:
         """
         Analyze the current debate context.
-        
+
         Args:
             context: Debate context including lists, history, etc.
-            
+
         Returns:
             Initial analysis text.
         """
         pass
-    
+
     @abstractmethod
     async def respond(
         self,
@@ -117,24 +117,24 @@ class OracleAgent(ABC):
     ) -> Argument:
         """
         Respond to previous arguments.
-        
+
         Args:
             previous_arguments: Arguments from other agents.
             topic: Current debate topic.
-            
+
         Returns:
             This agent's argument.
         """
         pass
-    
+
     @abstractmethod
     async def vote(self, transcript: "DebateTranscript") -> dict:
         """
         Vote on debate outcome.
-        
+
         Args:
             transcript: Complete debate transcript.
-            
+
         Returns:
             Vote with prediction and confidence.
         """
