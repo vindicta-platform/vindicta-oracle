@@ -4,6 +4,8 @@ from uuid import UUID, uuid4
 from datetime import datetime
 from pydantic import BaseModel, Field, field_validator
 
+from meta_oracle.rag.models import RulesContextPackage, UnitStats
+
 
 class AgentRole(str, Enum):
     """The five council agent roles."""
@@ -53,6 +55,7 @@ class DebateContext(BaseModel):
     mission: str | None = None
     terrain: str | None = None
     additional_context: str | None = None
+    rules_context: RulesContextPackage | None = None
 
 
 class DebateTranscript(BaseModel):
@@ -64,6 +67,7 @@ class DebateTranscript(BaseModel):
     consensus: str | None = None
     consensus_confidence: float = 0.0
     created_at: datetime = Field(default_factory=datetime.now)
+    rag_segments_used: list[str] = Field(default_factory=list)
 
 
 class Unit(BaseModel):
@@ -101,3 +105,5 @@ class GradeResponse(BaseModel):
     analysis: dict[str, str] = Field(..., description="Structured analysis by agent role")
     council_verdict: dict = Field(..., description="Final consensus and prediction details")
     metadata: dict = Field(..., description="Processing metadata and session IDs")
+    unit_data: dict[str, UnitStats] = Field(default_factory=dict, description="Retrieved RAG stats")
+    meta_context: dict[str, str] | None = Field(default=None, description="Global faction meta stats")
