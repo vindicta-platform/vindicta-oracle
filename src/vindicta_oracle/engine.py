@@ -1,16 +1,22 @@
 """Debate Engine - Orchestrates the 5-agent council debate."""
 
-from collections import Counter
+from __future__ import annotations
 
-from meta_oracle.models import Argument, DebateContext, DebateTranscript
-from meta_oracle.agents import (
+from collections import Counter
+from typing import TYPE_CHECKING
+
+from vindicta_oracle.models import Argument, DebateContext, DebateTranscript
+from vindicta_oracle.agents import (
     HomeAgent,
     AdversaryAgent,
     ArbiterAgent,
     RuleSageAgent,
     ChaosAgent,
 )
-from meta_oracle.ollama_client import OllamaClient, OllamaConfig
+from vindicta_oracle.ollama_client import OllamaClient, OllamaConfig
+
+if TYPE_CHECKING:
+    from vindicta_oracle.models import ArmyList
 
 
 class DebateEngine:
@@ -145,9 +151,7 @@ class DebateEngine:
             role = vote.agent_role.value.upper().replace("_", "-")
             print(f"   • {role}: {vote.prediction} ({vote.win_probability * 100:.0f}%)")
 
-    def run_grading_session(
-        self, army_list: "meta_oracle.models.ArmyList"
-    ) -> DebateTranscript:
+    def run_grading_session(self, army_list: ArmyList) -> DebateTranscript:
         """Execute a debate to grade a single army list.
 
         Args:

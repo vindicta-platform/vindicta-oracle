@@ -7,7 +7,7 @@ Neutral judge that weighs evidence from Home and Adversary per Issue #6.
 from dataclasses import dataclass, field
 from enum import Enum
 
-from meta_oracle.agents.base import BaseAgent
+from vindicta_oracle.agents.base import BaseAgent
 
 
 class VerdictType(str, Enum):

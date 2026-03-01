@@ -3,7 +3,7 @@
 from fastapi.testclient import TestClient
 from unittest.mock import patch
 
-from meta_oracle.api import app
+from vindicta_oracle.api import app
 
 client = TestClient(app)
 
@@ -15,7 +15,7 @@ def test_health_endpoint():
     assert response.json()["status"] == "operational"
 
 
-@patch("meta_oracle.grader.ListGrader.grade")
+@patch("vindicta_oracle.grader.ListGrader.grade")
 def test_grade_endpoint_success(mock_grade):
     """Test successful grading via the API endpoint."""
     # Mock the grader response

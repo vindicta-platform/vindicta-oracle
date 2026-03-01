@@ -1,7 +1,7 @@
 """Adversary Agent - Advocate for Player 2."""
 
-from meta_oracle.agents.base import BaseAgent
-from meta_oracle.models import AgentRole, Argument, ArgumentType, DebateContext
+from vindicta_oracle.agents.base import BaseAgent
+from vindicta_oracle.models import AgentRole, Argument, ArgumentType, DebateContext
 
 
 class AdversaryAgent(BaseAgent):

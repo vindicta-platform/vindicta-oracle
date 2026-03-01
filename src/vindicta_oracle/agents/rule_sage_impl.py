@@ -7,7 +7,7 @@ Rules expert that validates claims and cites sources per Issue #7.
 from dataclasses import dataclass, field
 from typing import Optional
 
-from meta_oracle.agents.base import BaseAgent
+from vindicta_oracle.agents.base import BaseAgent
 
 
 @dataclass

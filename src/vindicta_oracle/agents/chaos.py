@@ -1,7 +1,7 @@
 """Chaos Agent - Devil's advocate and upset detector."""
 
-from meta_oracle.agents.base import BaseAgent
-from meta_oracle.models import AgentRole
+from vindicta_oracle.agents.base import BaseAgent
+from vindicta_oracle.models import AgentRole
 
 
 class ChaosAgent(BaseAgent):

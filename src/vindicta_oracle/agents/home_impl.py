@@ -6,7 +6,7 @@ Advocates for the player's army list per Issue #4.
 
 from dataclasses import dataclass, field
 
-from meta_oracle.agents.base import BaseAgent
+from vindicta_oracle.agents.base import BaseAgent
 
 
 @dataclass

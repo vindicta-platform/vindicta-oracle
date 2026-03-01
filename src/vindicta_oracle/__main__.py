@@ -2,9 +2,9 @@
 
 import argparse
 
-from meta_oracle.models import DebateContext
-from meta_oracle.engine import DebateEngine
-from meta_oracle.ollama_client import OllamaConfig
+from vindicta_oracle.models import DebateContext
+from vindicta_oracle.engine import DebateEngine
+from vindicta_oracle.ollama_client import OllamaConfig
 
 
 def main():
@@ -14,9 +14,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python -m meta_oracle
-  python -m meta_oracle --model mistral --rounds 2
-  python -m meta_oracle --p1-faction "Orks" --p2-faction "Imperial Knights"
+  python -m vindicta_oracle
+  python -m vindicta_oracle --model mistral --rounds 2
+  python -m vindicta_oracle --p1-faction "Orks" --p2-faction "Imperial Knights"
         """,
     )
     parser.add_argument(

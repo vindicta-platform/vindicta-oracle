@@ -3,7 +3,7 @@
 import re
 from abc import ABC, abstractmethod
 
-from meta_oracle.models import (
+from vindicta_oracle.models import (
     AgentRole,
     Argument,
     ArgumentType,
@@ -11,7 +11,7 @@ from meta_oracle.models import (
     DebateTranscript,
     Vote,
 )
-from meta_oracle.ollama_client import OllamaClient
+from vindicta_oracle.ollama_client import OllamaClient
 
 
 class BaseAgent(ABC):

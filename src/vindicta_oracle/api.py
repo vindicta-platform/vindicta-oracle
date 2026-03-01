@@ -2,8 +2,8 @@
 
 from fastapi import FastAPI, APIRouter, HTTPException, Depends
 
-from meta_oracle.grader import ListGrader
-from meta_oracle.models import GradeRequest, GradeResponse
+from vindicta_oracle.grader import ListGrader
+from vindicta_oracle.models import GradeRequest, GradeResponse
 
 app = FastAPI(
     title="Meta-Oracle API",
