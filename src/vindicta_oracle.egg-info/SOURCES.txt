@@ -28,6 +28,9 @@ src/vindicta_oracle/agents/home.py
 src/vindicta_oracle/agents/home_impl.py
 src/vindicta_oracle/agents/rule_sage.py
 src/vindicta_oracle/agents/rule_sage_impl.py
+src/vindicta_oracle/rag_pipeline/__init__.py
+src/vindicta_oracle/rag_pipeline/scraper.py
+src/vindicta_oracle/rag_pipeline/storage.py
 tests/test_agents.py
 tests/test_api.py
 tests/test_grader.py

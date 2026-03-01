@@ -8,11 +8,14 @@ version = "0.1.0"
 description = "AI debate engine for competitive Warhammer predictions"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "ollama>=0.3",
     "pydantic>=2.0",
     "duckdb>=0.10",
+    "chromadb>=0.5.0",
+    "mcp>=1.0.0",
+    "crawl4ai>=0.4.0",
 ]
 
 [project.optional-dependencies]
