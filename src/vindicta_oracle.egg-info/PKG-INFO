@@ -3,12 +3,15 @@ Name: vindicta-oracle
 Version: 0.1.0
 Summary: AI debate engine for competitive Warhammer predictions
 License-Expression: MIT
-Requires-Python: >=3.10
+Requires-Python: >=3.12
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: ollama>=0.3
 Requires-Dist: pydantic>=2.0
 Requires-Dist: duckdb>=0.10
+Requires-Dist: chromadb>=0.5.0
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: crawl4ai>=0.4.0
 Provides-Extra: dev
 Requires-Dist: pytest>=8.0; extra == "dev"
 Requires-Dist: ruff>=0.4; extra == "dev"
