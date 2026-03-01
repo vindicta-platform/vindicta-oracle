@@ -1,19 +1,20 @@
 """Rule-Sage Agent - Rules validator and mechanical expert."""
+
 from meta_oracle.agents.base import BaseAgent
 from meta_oracle.models import AgentRole
 
 
 class RuleSageAgent(BaseAgent):
     """Precise rules expert who validates mechanical claims."""
-    
+
     @property
     def role(self) -> AgentRole:
         return AgentRole.RULE_SAGE
-    
+
     @property
     def personality(self) -> str:
         return "Precise rules expert"
-    
+
     @property
     def system_prompt(self) -> str:
         return """You are RULE-SAGE, the rules expert in the Meta-Oracle council.

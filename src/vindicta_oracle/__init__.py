@@ -1,4 +1,5 @@
 """Meta-Oracle: AI Council for competitive Warhammer predictions."""
+
 from meta_oracle.models import (
     AgentRole,
     Argument,
