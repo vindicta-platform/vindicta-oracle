@@ -4,8 +4,8 @@ import pytest
 from unittest.mock import MagicMock
 from uuid import uuid4
 
-from meta_oracle.grader import ListGrader
-from meta_oracle.models import (
+from vindicta_oracle.grader import ListGrader
+from vindicta_oracle.models import (
     ArmyList,
     Unit,
     GradeRequest,

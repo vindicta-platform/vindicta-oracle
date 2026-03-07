@@ -1,6 +1,6 @@
 """Meta-Oracle: AI Council for competitive Warhammer predictions."""
 
-from meta_oracle.models import (
+from vindicta_oracle.models import (
     AgentRole,
     Argument,
     ArgumentType,
@@ -8,8 +8,8 @@ from meta_oracle.models import (
     DebateTranscript,
     Vote,
 )
-from meta_oracle.engine import DebateEngine
-from meta_oracle.ollama_client import OllamaClient, OllamaConfig
+from vindicta_oracle.engine import DebateEngine
+from vindicta_oracle.ollama_client import OllamaClient, OllamaConfig
 
 __all__ = [
     "AgentRole",

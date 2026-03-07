@@ -1,8 +1,19 @@
 """Oracle Agent protocol - interface for all council agents."""
 
-from typing import Protocol
+from __future__ import annotations
 
-from meta_oracle.models import Argument, DebateContext, DebateTranscript, Vote
+from abc import ABC, abstractmethod
+from enum import Enum
+from typing import TYPE_CHECKING, Optional, Protocol
+from uuid import UUID, uuid4
+
+from pydantic import BaseModel, Field
+
+if TYPE_CHECKING:
+    from vindicta_oracle.models import DebateTranscript as DebateTranscriptModel
+    from vindicta_oracle.models import Vote
+
+from vindicta_oracle.models import Argument as MetaArgument, DebateContext
 
 
 class OracleAgent(Protocol):
@@ -22,27 +33,15 @@ class OracleAgent(Protocol):
         """Perform initial analysis of the matchup."""
         ...
 
-    def respond(self, transcript: DebateTranscript, round_num: int) -> Argument:
+    def respond(
+        self, transcript: DebateTranscriptModel, round_num: int
+    ) -> MetaArgument:
         """Generate a response based on debate history."""
         ...
 
-    def vote(self, transcript: DebateTranscript) -> Vote:
+    def vote(self, transcript: DebateTranscriptModel) -> Vote:
         """Cast final prediction vote after debate concludes."""
         ...
-
-
-"""
-OracleAgent protocol for Meta-Oracle debates.
-
-Defines the interface that all debate agents must implement.
-"""
-
-from abc import ABC, abstractmethod
-from enum import Enum
-from typing import Optional
-from uuid import UUID, uuid4
-
-from pydantic import BaseModel, Field
 
 
 class AgentRole(str, Enum):
@@ -89,9 +88,8 @@ class DebateRound(BaseModel):
         self.arguments.append(argument)
 
 
-class OracleAgent(ABC):
-    """
-    Abstract base class for Oracle Council agents.
+class BaseOracleAgent(ABC):
+    """Abstract base class for Oracle Council agents.
 
     Each agent specializes in a different aspect of game analysis.
     """
@@ -102,8 +100,7 @@ class OracleAgent(ABC):
 
     @abstractmethod
     async def analyze(self, context: dict) -> str:
-        """
-        Analyze the current debate context.
+        """Analyze the current debate context.
 
         Args:
             context: Debate context including lists, history, etc.
@@ -115,8 +112,7 @@ class OracleAgent(ABC):
 
     @abstractmethod
     async def respond(self, previous_arguments: list[Argument], topic: str) -> Argument:
-        """
-        Respond to previous arguments.
+        """Respond to previous arguments.
 
         Args:
             previous_arguments: Arguments from other agents.
@@ -128,9 +124,8 @@ class OracleAgent(ABC):
         pass
 
     @abstractmethod
-    async def vote(self, transcript: "DebateTranscript") -> dict:
-        """
-        Vote on debate outcome.
+    async def vote(self, transcript: DebateTranscriptModel) -> dict:
+        """Vote on debate outcome.
 
         Args:
             transcript: Complete debate transcript.
@@ -142,4 +137,4 @@ class OracleAgent(ABC):
 
 
 # Type alias for agent implementations
-AgentFactory = type[OracleAgent]
+AgentFactory = type[BaseOracleAgent]

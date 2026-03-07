@@ -1,7 +1,7 @@
 """Arbiter Agent - Data-driven neutral referee."""
 
-from meta_oracle.agents.base import BaseAgent
-from meta_oracle.models import AgentRole
+from vindicta_oracle.agents.base import BaseAgent
+from vindicta_oracle.models import AgentRole
 
 
 class ArbiterAgent(BaseAgent):

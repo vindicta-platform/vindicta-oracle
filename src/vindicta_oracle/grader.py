@@ -3,8 +3,13 @@
 import random
 import time
 
-from meta_oracle.engine import DebateEngine
-from meta_oracle.models import ArmyList, GradeRequest, GradeResponse, DebateTranscript
+from vindicta_oracle.engine import DebateEngine
+from vindicta_oracle.models import (
+    ArmyList,
+    GradeRequest,
+    GradeResponse,
+    DebateTranscript,
+)
 
 
 class ListGrader:

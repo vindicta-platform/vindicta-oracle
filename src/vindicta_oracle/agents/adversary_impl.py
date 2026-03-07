@@ -6,7 +6,7 @@ Argues against the player's army list (devil's advocate) per Issue #5.
 
 from dataclasses import dataclass, field
 
-from meta_oracle.agents.base import BaseAgent
+from vindicta_oracle.agents.base import BaseAgent
 
 
 @dataclass

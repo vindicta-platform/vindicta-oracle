@@ -10,7 +10,7 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 
-from meta_oracle.protocol import AgentRole, DebateRound
+from vindicta_oracle.protocol import AgentRole, DebateRound
 
 
 class Prediction(BaseModel):
@@ -69,8 +69,8 @@ class DebateTranscript(BaseModel):
             return Prediction(winner=1, confidence=0.5, reasoning="No votes")
 
         # Count votes
-        winner_votes = {}
-        total_confidence = 0
+        winner_votes: dict[int, int] = {}
+        total_confidence: float = 0.0
 
         for vote in self.votes:
             w = vote.prediction.winner
@@ -78,7 +78,7 @@ class DebateTranscript(BaseModel):
             total_confidence += vote.prediction.confidence
 
         # Find majority
-        winner = max(winner_votes, key=winner_votes.get)
+        winner = max(winner_votes, key=lambda k: winner_votes[k])
         confidence = total_confidence / len(self.votes)
 
         # Check for upset

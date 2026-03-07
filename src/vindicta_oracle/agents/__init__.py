@@ -1,21 +1,20 @@
 """Meta-Oracle council agents and stubs."""
 
-from meta_oracle.agents.base import BaseAgent
-from meta_oracle.agents.home import HomeAgent
-from meta_oracle.agents.adversary import AdversaryAgent
-from meta_oracle.agents.arbiter import ArbiterAgent
-from meta_oracle.agents.rule_sage import RuleSageAgent
-from meta_oracle.agents.chaos import ChaosAgent
-from meta_oracle.protocol import (
+from vindicta_oracle.agents.base import BaseAgent
+from vindicta_oracle.agents.home import HomeAgent
+from vindicta_oracle.agents.adversary import AdversaryAgent
+from vindicta_oracle.agents.arbiter import ArbiterAgent
+from vindicta_oracle.agents.rule_sage import RuleSageAgent
+from vindicta_oracle.agents.chaos import ChaosAgent
+from vindicta_oracle.protocol import (
     AgentRole,
     Argument,
     ArgumentType,
-    OracleAgent,
-    DebateRound,
+    BaseOracleAgent,
 )
 
 
-class StubAgent(OracleAgent):
+class StubAgent(BaseOracleAgent):
     """A stub agent for testing that returns hardcoded responses."""
 
     def __init__(self, role: AgentRole) -> None:

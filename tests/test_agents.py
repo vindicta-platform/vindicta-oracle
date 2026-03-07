@@ -12,7 +12,7 @@ Tests cover:
 import pytest
 from unittest.mock import MagicMock, patch
 
-from meta_oracle.models import (
+from vindicta_oracle.models import (
     AgentRole,
     Argument,
     ArgumentType,
@@ -20,11 +20,11 @@ from meta_oracle.models import (
     DebateTranscript,
     Vote,
 )
-from meta_oracle.agents.home import HomeAgent
-from meta_oracle.agents.adversary import AdversaryAgent
-from meta_oracle.agents.arbiter import ArbiterAgent
-from meta_oracle.agents.rule_sage import RuleSageAgent
-from meta_oracle.agents.chaos import ChaosAgent
+from vindicta_oracle.agents.home import HomeAgent
+from vindicta_oracle.agents.adversary import AdversaryAgent
+from vindicta_oracle.agents.arbiter import ArbiterAgent
+from vindicta_oracle.agents.rule_sage import RuleSageAgent
+from vindicta_oracle.agents.chaos import ChaosAgent
 
 
 # =============================================================================
@@ -158,7 +158,7 @@ class TestAnalyzeMethod:
     def test_analyze_calls_client(self, mock_client, sample_context):
         """analyze() should call the Ollama client."""
         agent = HomeAgent(mock_client)
-        result = agent.analyze(sample_context)
+        agent.analyze(sample_context)  # ensure it calls the client
 
         mock_client.generate.assert_called_once()
         call_args = mock_client.generate.call_args
@@ -311,7 +311,7 @@ class TestEdgeCases:
 
     def test_agent_without_client_uses_default(self):
         """Agents should create default client if none provided."""
-        with patch("meta_oracle.agents.base.OllamaClient") as MockClient:
+        with patch("vindicta_oracle.agents.base.OllamaClient") as MockClient:
             MockClient.return_value = MagicMock()
             agent = HomeAgent()
             assert agent.client is not None

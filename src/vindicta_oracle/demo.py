@@ -1,8 +1,8 @@
 """Demo: Run a sample Meta-Oracle debate with local models."""
 
-from meta_oracle.models import DebateContext
-from meta_oracle.engine import DebateEngine
-from meta_oracle.ollama_client import OllamaConfig
+from vindicta_oracle.models import DebateContext
+from vindicta_oracle.engine import DebateEngine
+from vindicta_oracle.ollama_client import OllamaConfig
 
 
 def run_demo():
