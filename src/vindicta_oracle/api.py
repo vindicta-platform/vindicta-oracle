@@ -1,5 +1,7 @@
 """Meta-Oracle API - REST interface for list grading and council debates."""
 
+import os
+
 from fastapi import FastAPI, APIRouter, HTTPException, Depends
 
 from vindicta_oracle.grader import ListGrader
@@ -57,4 +59,5 @@ app.include_router(router)
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    host = os.environ.get("ORACLE_HOST", "127.0.0.1")
+    uvicorn.run(app, host=host, port=8000)

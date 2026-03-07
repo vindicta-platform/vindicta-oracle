@@ -39,15 +39,50 @@ class DebateEngine:
         ]
         self.num_rounds = num_rounds
 
-    def run_debate(self, context: DebateContext) -> DebateTranscript:
+    def run_debate(
+        self,
+        context: DebateContext | None = None,
+        *,
+        topic: str | None = None,
+        player1_faction: str | None = None,
+        player2_faction: str | None = None,
+        player1_list: str = "",
+        player2_list: str = "",
+        mission: str | None = None,
+        terrain: str | None = None,
+        additional_context: str | None = None,
+    ) -> DebateTranscript:
         """Execute the full debate protocol.
+
+        Accepts either a pre-built DebateContext or individual keyword
+        arguments for convenience. If ``context`` is provided the keyword
+        arguments are ignored.
 
         Args:
             context: The matchup context (factions, lists, mission, etc.)
+            topic: Convenience alias – mapped to additional_context.
+            player1_faction: Faction name for player 1.
+            player2_faction: Faction name for player 2.
+            player1_list: Army list for player 1.
+            player2_list: Army list for player 2.
+            mission: Mission name.
+            terrain: Terrain description.
+            additional_context: Extra context for the debate.
 
         Returns:
             Complete debate transcript with all rounds, votes, and consensus
         """
+        if context is None:
+            context = DebateContext(
+                player1_faction=player1_faction or "Unknown",
+                player1_list=player1_list,
+                player2_faction=player2_faction or "Unknown",
+                player2_list=player2_list,
+                mission=mission,
+                terrain=terrain,
+                additional_context=additional_context or topic,
+            )
+
         transcript = DebateTranscript(context=context)
 
         self._print_header(context)
