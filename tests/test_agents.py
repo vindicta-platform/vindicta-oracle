@@ -254,7 +254,7 @@ REASONING: Space Marines have the advantage.
         result = agent.vote(sample_transcript)
 
         assert "Player 1" in result.prediction
-        assert result.win_probability == 0.65
+        assert result.win_probability == pytest.approx(0.65)
 
     def test_vote_parses_player2_winner(self, mock_client, sample_transcript):
         """vote() should correctly parse Player 2 as winner."""
@@ -267,7 +267,7 @@ REASONING: Orks will overwhelm.
         result = agent.vote(sample_transcript)
 
         assert "Player 2" in result.prediction
-        assert result.win_probability == 0.70
+        assert result.win_probability == pytest.approx(0.70)
 
     def test_vote_parses_draw(self, mock_client, sample_transcript):
         """vote() should correctly parse Draw prediction."""
@@ -280,7 +280,7 @@ REASONING: Evenly matched.
         result = agent.vote(sample_transcript)
 
         assert "Draw" in result.prediction
-        assert result.win_probability == 0.50
+        assert result.win_probability == pytest.approx(0.50)
 
     def test_vote_handles_malformed_response(self, mock_client, sample_transcript):
         """vote() should gracefully handle malformed LLM responses."""
@@ -290,7 +290,7 @@ REASONING: Evenly matched.
 
         # Should still return a Vote, defaulting where needed
         assert isinstance(result, Vote)
-        assert result.win_probability == 0.60
+        assert result.win_probability == pytest.approx(0.60)
 
     def test_vote_clamps_probability(self, mock_client, sample_transcript):
         """vote() should clamp probability to 0.0-1.0 range."""

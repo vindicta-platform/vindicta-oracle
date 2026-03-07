@@ -61,7 +61,7 @@ async def test_grade_valid_list():
     assert response.score > 0
     assert response.grade in ["A", "B", "C", "D", "F"]
     assert "home" in response.analysis
-    assert response.council_verdict["confidence"] == 0.8
+    assert response.council_verdict["confidence"] == pytest.approx(0.8)
 
 
 def test_scoring_formula():
